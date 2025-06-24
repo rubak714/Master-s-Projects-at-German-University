@@ -1,0 +1,619 @@
+Generated notebook dsp_lab1_11146364.ipynb for matriculation number 11146364 on: 2021-10-30 20:00:18.999249
+# iPython magic command to load the matplotlib library and
+# select the notebook graphics frontend
+%matplotlib inline
+# import necessary functions from the thkdss library
+from thkdsp import *
+from dsplab import *
+# import audio related functions from the audio submodule
+#from thkdsp.audio import play_signal, wav2dtsignal
+# import some definitions and functions from numpy, the python library for Matlab-like array processing
+from numpy import arange, shape, array, zeros, size, ones, isscalar
+# set font for Matplotlib to 'Times New Roman' if that is available
+set_mpl_font()
+# set default font size for Matplotlib, change to different value if labels are too large or too small
+set_mpl_fontsize(16)
+Info: 4722224406
+Lab 1: Probability and Random Variables for matriculation number 11146364 started at: 2021-10-30 20:07:42.538963
+# Sat, 30 Oct 2021 20:12:03
+#To be able to use the functions from the lab1 subpackage of the dsplab library, first importing all
+#functions from that subpackage
+
+from dsplab.lab1 import *# Sat, 30 Oct 2021 20:16:44
+#Use the gen_probs function to generate your individual values for the a priori probability P(S0) and the
+#error probability Pe
+
+P0,Pe=genprobs()# Sat, 30 Oct 2021 20:17:12
+#Use the gen_probs function to generate your individual values for the a priori probability P(S0) and the
+#error probability Pe
+
+P0,Pe=gen_probs()# Sat, 30 Oct 2021 20:17:32
+P0#[Out]# 0.6
+# Sat, 30 Oct 2021 20:17:40
+Pe#[Out]# 0.4
+# Sat, 30 Oct 2021 20:22:12
+#Substitute these values into your expression from the pre-lab preparation problem 5.1 and calculate the
+#values for the probability of receiving a "1“ and the probability that a "1“ was transmitted if a "1" has been
+#received:
+
+#b) Estimate the probabilities P(R1) and P(S1|R1) for an increasing number of trials M.# Sat, 30 Oct 2021 20:23:16
+#Use the gen_probs function to generate your individual values for the a priori probability P(S0) and the
+#error probability Pe
+
+PS0,Pe=gen_probs()# Sat, 30 Oct 2021 20:23:20
+P0#[Out]# 0.6
+# Sat, 30 Oct 2021 20:23:28
+PS0#[Out]# 0.6
+# Sat, 30 Oct 2021 20:23:32
+Pe#[Out]# 0.4
+# Sat, 30 Oct 2021 20:23:40
+#Substitute these values into your expression from the pre-lab preparation problem 5.1 and calculate the
+#values for the probability of receiving a "1“ and the probability that a "1“ was transmitted if a "1" has been
+#received:
+
+#b) Estimate the probabilities P(R1) and P(S1|R1) for an increasing number of trials M.# Sat, 30 Oct 2021 20:24:00
+#Define a variable M in the IPython console and set it to 100, first.# Sat, 30 Oct 2021 20:24:25
+M=100# Sat, 30 Oct 2021 20:33:07
+tx=random_binary(M,PS0)# Sat, 30 Oct 2021 20:33:20
+tx#[Out]# array([0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1,
+#[Out]#        1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0,
+#[Out]#        1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1,
+#[Out]#        1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1,
+#[Out]#        0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1])
+# Sat, 30 Oct 2021 20:35:00
+#Obtain an array rx for the received symbols from the tx array using the bsc function.
+rx=bsc(tx,Pe)# Sat, 30 Oct 2021 20:35:16
+rx#[Out]# array([0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0,
+#[Out]#        1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1,
+#[Out]#        0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1,
+#[Out]#        1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0,
+#[Out]#        0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0])
+# Sat, 30 Oct 2021 20:36:20
+#Use the rates function to determine the relatives frequencies of zeros and ones within the received
+#symbol array
+
+rates(rx)#[Out]# (0.55, 0.45)
+# Sat, 30 Oct 2021 20:37:01
+#For M=1000
+M=1000# Sat, 30 Oct 2021 20:37:42
+tx=random_binary(M,PS0)# Sat, 30 Oct 2021 20:38:02
+rx=bsc(tx,Pe)# Sat, 30 Oct 2021 20:38:18
+rates(rx)#[Out]# (0.508, 0.492)
+# Sat, 30 Oct 2021 20:38:47
+#For M=10000
+M=10000# Sat, 30 Oct 2021 20:38:55
+tx=random_binary(M,PS0)# Sat, 30 Oct 2021 20:39:02
+rx=bsc(tx,Pe)# Sat, 30 Oct 2021 20:39:10
+rates(rx)#[Out]# (0.521, 0.479)
+# Sat, 30 Oct 2021 20:39:28
+#For M=100000
+M=100000# Sat, 30 Oct 2021 20:39:34
+tx=random_binary(M,PS0)# Sat, 30 Oct 2021 20:39:41
+rx=bsc(tx,Pe)# Sat, 30 Oct 2021 20:39:49
+rates(rx)#[Out]# (0.51986, 0.48014)
+# Sat, 30 Oct 2021 20:40:10
+#For M=1000000
+M=1000000# Sat, 30 Oct 2021 20:40:35
+tx=random_binary(M,PS0)# Sat, 30 Oct 2021 20:40:42
+rx=bsc(tx,Pe)# Sat, 30 Oct 2021 20:40:51
+rates(rx)#[Out]# (0.519914, 0.480086)
+# Sat, 30 Oct 2021 20:44:11
+#here all the output values from 'rates' function denotes P(R1) and P(S1|R1) respectively# Sat, 30 Oct 2021 20:45:00
+#To get an idea on how much the estimates still vary even though you repeated the experiment for a large
+#number of times, repeat the experiment for M = 1000 trials five times# Sat, 30 Oct 2021 20:45:50
+#For M=1000 5 times
+M=1000# Sat, 30 Oct 2021 20:46:21
+tx=random_binary(M,PS0)# Sat, 30 Oct 2021 20:46:40
+rx=bsc(tx,Pe)# Sat, 30 Oct 2021 20:46:56
+rates(rx)#[Out]# (0.526, 0.474)
+# Sat, 30 Oct 2021 20:48:13
+#For M=1000 for four more times
+M=1000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+rates(rx)#[Out]# (0.518, 0.482)
+# Sat, 30 Oct 2021 20:48:25
+
+M=1000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+rates(rx)#[Out]# (0.528, 0.472)
+# Sat, 30 Oct 2021 20:48:37
+M=1000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+rates(rx)#[Out]# (0.516, 0.484)
+# Sat, 30 Oct 2021 20:48:52
+M=1000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+rates(rx)#[Out]# (0.49, 0.51)
+# Sat, 30 Oct 2021 20:49:42
+#c# Sat, 30 Oct 2021 20:50:45
+#c) Estimate the probability P(S1|R1) using the function tx_cond_rx, for an increasing number of trials M and
+
+#Hint: Enter tx_cond_rx? to view the help for tx_cond_rx and read it carefully to understand how this
+#function must be used# Sat, 30 Oct 2021 20:51:41
+tx_cond_rx?# Sat, 30 Oct 2021 20:53:39
+#Starting from M=100
+M=100# Sat, 30 Oct 2021 20:54:18
+tx=random_binary(M,PS0)# Sat, 30 Oct 2021 20:54:24
+rx=bsc(tx,Pe)# Sat, 30 Oct 2021 20:56:02
+tx_cond_rx(tx,rx,1,1)#[Out]# 0.4772727272727273
+# Sat, 30 Oct 2021 20:56:56
+M=1000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+tx_cond_rx(tx,rx,1,1)#[Out]# 0.48303393213572854
+# Sat, 30 Oct 2021 20:57:15
+M=10000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+tx_cond_rx(tx,rx,1,1)#[Out]# 0.5088745040718313
+# Sat, 30 Oct 2021 20:57:24
+M=100000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+tx_cond_rx(tx,rx,1,1)#[Out]# 0.49835697350359803
+# Sat, 30 Oct 2021 20:57:39
+M=1000000
+tx=random_binary(M,PS0)
+rx=bsc(tx,Pe)
+tx_cond_rx(tx,rx,1,1)#[Out]# 0.4998990603244638
+# Sat, 30 Oct 2021 20:58:37
+#####################6.3 Experiment 2: Scatter plots##################### Sat, 30 Oct 2021 20:59:42
+#The functions rv1, rv2, and rv3 can be used to generate sample sequences of three unknown random variables. Use these functions to generate samples of 10000 random values for each random variable und use the
+#plot_scatter function to plot the corresponding scatter plots.# Sat, 30 Oct 2021 21:00:22
+#a) Determine the distribution of the three unknown random variables by looking at the scatter plots.# Sat, 30 Oct 2021 21:00:57
+rv1?# Sat, 30 Oct 2021 21:01:51
+rv1(10000)#[Out]# array([0.53660282, 0.99375064, 0.93713259, ..., 0.38385226, 0.00971267,
+#[Out]#        0.26700145])
+# Sat, 30 Oct 2021 21:02:16
+plot_scatter(rv1(10000))# Sat, 30 Oct 2021 21:03:06
+plot_scatter(rv2(10000))# Sat, 30 Oct 2021 21:03:31
+plot_scatter(rv3(10000))# Sat, 30 Oct 2021 21:04:04
+#########################6.4 Experiment 3: Estimation of the moments############################### Sat, 30 Oct 2021 21:04:23
+#a) Uniform random variable# Sat, 30 Oct 2021 21:06:37
+#procedure
+from numpy.random import uniform# Sat, 30 Oct 2021 21:11:09
+M=100# Sat, 30 Oct 2021 21:12:02
+uniform?# Sat, 30 Oct 2021 21:12:26
+#Docstring:
+#uniform(low=0.0, high=1.0, size=None)# Sat, 30 Oct 2021 21:12:43
+X=uniform(0,1,M)# Sat, 30 Oct 2021 21:12:49
+X#[Out]# array([0.39028127, 0.35340298, 0.1869554 , 0.661357  , 0.90091784,
+#[Out]#        0.4778145 , 0.31746455, 0.43136244, 0.33946576, 0.70285645,
+#[Out]#        0.72783449, 0.01811754, 0.90648178, 0.21612414, 0.64602802,
+#[Out]#        0.1489563 , 0.54133221, 0.95951648, 0.19202792, 0.65194121,
+#[Out]#        0.89441543, 0.11299379, 0.36899937, 0.32612085, 0.31234822,
+#[Out]#        0.69318976, 0.79014973, 0.92730032, 0.3743756 , 0.66303563,
+#[Out]#        0.94475798, 0.32529686, 0.12744514, 0.87249245, 0.27834145,
+#[Out]#        0.10610916, 0.35189045, 0.44384194, 0.40065439, 0.43589802,
+#[Out]#        0.8538427 , 0.02967135, 0.74313477, 0.07457361, 0.23778342,
+#[Out]#        0.3519283 , 0.92362808, 0.48877995, 0.34932403, 0.30094522,
+#[Out]#        0.08811413, 0.0728008 , 0.7982604 , 0.35576168, 0.17061989,
+#[Out]#        0.71863598, 0.34607235, 0.45819093, 0.68861386, 0.39368738,
+#[Out]#        0.68339474, 0.89587467, 0.96492655, 0.68810474, 0.98706707,
+#[Out]#        0.19257179, 0.23910437, 0.65326731, 0.9972149 , 0.58162899,
+#[Out]#        0.43587197, 0.17707588, 0.80032524, 0.78467337, 0.93943204,
+#[Out]#        0.03994472, 0.55161577, 0.40065719, 0.8215285 , 0.31863165,
+#[Out]#        0.97624722, 0.30138861, 0.81362351, 0.74647611, 0.63593068,
+#[Out]#        0.23389347, 0.08239374, 0.2424425 , 0.99649898, 0.36804453,
+#[Out]#        0.44584576, 0.0602599 , 0.77392888, 0.82147936, 0.73981979,
+#[Out]#        0.77319636, 0.0599434 , 0.90431179, 0.64144215, 0.16850005])
+# Sat, 30 Oct 2021 21:13:04
+#X# Sat, 30 Oct 2021 21:13:51
+#Use the function expected_values to compute estimates for the moments
+expected_values?# Sat, 30 Oct 2021 21:14:04
+#Signature: expected_values(X)# Sat, 30 Oct 2021 21:14:18
+expected_values(X)#[Out]# (0.5090284189147245, 0.34390571483728116, 0.08565230664086555)
+# Sat, 30 Oct 2021 21:15:27
+M=1000# Sat, 30 Oct 2021 21:15:39
+X=uniform(0,1,M)# Sat, 30 Oct 2021 21:15:55
+expected_values(X)#[Out]# (0.5038307781133994, 0.3432571594570299, 0.0895012076903668)
+# Sat, 30 Oct 2021 21:16:07
+M=10000# Sat, 30 Oct 2021 21:16:15
+X=uniform(0,1,M)# Sat, 30 Oct 2021 21:17:28
+expected_values(X)#[Out]# (0.5049584696270972, 0.3388784276681312, 0.08390376199619079)
+# Sat, 30 Oct 2021 21:17:40
+M=100000# Sat, 30 Oct 2021 21:17:47
+X=uniform(0,1,M)# Sat, 30 Oct 2021 21:17:55
+expected_values(X)#[Out]# (0.5002408941504889, 0.3330884801981712, 0.08284835650125558)
+# Sat, 30 Oct 2021 21:18:09
+M=1000000# Sat, 30 Oct 2021 21:18:17
+X=uniform(0,1,M)# Sat, 30 Oct 2021 21:18:24
+expected_values(X)#[Out]# (0.5001848315076032, 0.33350600270535236, 0.08332122035628313)
+# Sat, 30 Oct 2021 21:26:41
+expected_values?# Sat, 30 Oct 2021 21:27:46
+#X : array_like
+#Input array containing samples of a random variable X
+
+#Returns
+
+#mean : float
+    #Mean = E{X}
+#mean_square : float
+    #Mean square value = E{X**2}
+#variance : float
+    #Variance = E{(X-mean)**2}# Sat, 30 Oct 2021 21:28:25
+#this way mean, mean_square, variance are achieved# Sat, 30 Oct 2021 21:29:32
+#To understand that the estimates themselves are still somewhat random, repeat this experiment for 
+#M =1000 trials five times# Sat, 30 Oct 2021 21:30:32
+#1
+M=1000
+X=uniform(0,1,M)
+expected_values(X)#[Out]# (0.511951154742691, 0.34285576968136217, 0.0808426274664538)
+# Sat, 30 Oct 2021 21:30:48
+#2
+M=1000
+X=uniform(0,1,M)
+expected_values(X)#[Out]# (0.5113026274957579, 0.3433926182028828, 0.08204428560442142)
+# Sat, 30 Oct 2021 21:31:00
+#3
+M=1000
+X=uniform(0,1,M)
+expected_values(X)#[Out]# (0.49604622629194434, 0.3297349670708281, 0.08375686531766696)
+# Sat, 30 Oct 2021 21:31:19
+#4
+M=1000
+X=uniform(0,1,M)
+expected_values(X)#[Out]# (0.4973101327082669, 0.33774723898905495, 0.0905203912860269)
+# Sat, 30 Oct 2021 21:31:35
+#5
+M=1000
+X=uniform(0,1,M)
+expected_values(X)#[Out]# (0.4862363177814272, 0.31903875516480057, 0.08269569412928886)
+# Sat, 30 Oct 2021 21:32:35
+expected_values?# Sat, 30 Oct 2021 21:33:02
+expected_values?# Sat, 30 Oct 2021 21:33:50
+########################b) Gaussian random variable########################## Sat, 30 Oct 2021 21:34:48
+#Estimate mean mX = E{X}, variance σ^2(X), and mean square E{X^2} of zero-mean Gaussian random numbers
+#using the expected_values function for different numbers of independent trials M. # Sat, 30 Oct 2021 21:36:05
+#procedure# Sat, 30 Oct 2021 21:37:04
+from numpy.random import normal# Sat, 30 Oct 2021 21:38:27
+normal?# Sat, 30 Oct 2021 21:39:05
+#Docstring:
+#normal(loc=0.0, scale=1.0, size=None)
+normal?# Sat, 30 Oct 2021 21:41:37
+#Docstring:
+#normal(loc=0.0, scale=1.0, size=None)
+#Parameters
+
+#loc : float or array_like of floats
+    #Mean ("centre") of the distribution.
+#scale : float or array_like of floats
+    #Standard deviation (spread or "width") of the distribution. Must be
+    #non-negative.
+#size : int or tuple of ints, optional# Sat, 30 Oct 2021 21:42:19
+M=100# Sat, 30 Oct 2021 21:42:38
+X=normal(0,1,M)# Sat, 30 Oct 2021 21:43:02
+expected_values(X)#[Out]# (-0.14741781019614023, 1.0650319834226984, 1.053838356221892)
+# Sat, 30 Oct 2021 21:44:20
+M=1000# Sat, 30 Oct 2021 21:44:29
+#Mean=0,Standard deviation=1
+X=normal(0,1,M)# Sat, 30 Oct 2021 21:44:36
+expected_values(X)#[Out]# (-0.05986107540067523, 0.9338354250580132, 0.9311832599698577)
+# Sat, 30 Oct 2021 21:45:29
+M=10000# Sat, 30 Oct 2021 21:45:38
+#Mean=0,Standard deviation=1
+X=normal(0,1,M)# Sat, 30 Oct 2021 21:45:45
+expected_values(X)#[Out]# (-0.0069176091091329, 0.998987597048661, 0.999039647697644)
+# Sat, 30 Oct 2021 21:46:00
+M=100000# Sat, 30 Oct 2021 21:46:07
+X=normal(0,1,M)# Sat, 30 Oct 2021 21:46:14
+expected_values(X)#[Out]# (-0.0009482045701431394, 1.0037496270709436, 1.0037587655666922)
+# Sat, 30 Oct 2021 21:46:51
+M=1000000# Sat, 30 Oct 2021 21:46:58
+X=normal(0,1,M)# Sat, 30 Oct 2021 21:47:05
+expected_values(X)#[Out]# (-0.0013912274400827698, 1.0024796453489995, 1.0024787123139223)
+# Sat, 30 Oct 2021 21:48:15
+#########################6.5 Experiment 4: Estimation of the probability density function######################### Sat, 30 Oct 2021 21:49:26
+#Use normal to generate an array X of M zero-mean Gaussian distributed random numbers of unit variance# Sat, 30 Oct 2021 21:49:44
+#Use the function number_hits_interval to count how often the mean is taken on exactly# Sat, 30 Oct 2021 21:50:04
+M=100# Sat, 30 Oct 2021 21:50:21
+X=normal(0,1,M)# Sat, 30 Oct 2021 21:50:48
+number_hits_interval?# Sat, 30 Oct 2021 21:51:22
+#Signature: number_hits_interval(X, lower_bound, upper_bound=None)# Sat, 30 Oct 2021 21:51:41
+number_hits_interval(X,0)#[Out]# 0
+# Sat, 30 Oct 2021 21:53:19
+number_hits_interval(X,0,1)#[Out]# 34
+# Sat, 30 Oct 2021 21:53:55
+M=100
+X=normal(0,1,M)
+number_hits_interval(X,0,1)#[Out]# 33
+# Sat, 30 Oct 2021 21:54:03
+M=1000
+X=normal(0,1,M)
+number_hits_interval(X,0,1)#[Out]# 376
+# Sat, 30 Oct 2021 21:54:17
+M=10000
+X=normal(0,1,M)
+number_hits_interval(X,0,1)#[Out]# 3369
+# Sat, 30 Oct 2021 21:54:28
+M=100000
+X=normal(0,1,M)
+number_hits_interval(X,0,1)#[Out]# 34233
+# Sat, 30 Oct 2021 21:54:54
+M=1000000
+X=normal(0,1,M)
+number_hits_interval(X,0,1)#[Out]# 340979
+# Sat, 30 Oct 2021 21:57:01
+#These above output results are the absolute frequency F# Sat, 30 Oct 2021 21:57:19
+#b) Change the experiment from the previous section by investigating the number of hits within a small interval
+#[−∆x/2,∆x/2] around the mean value. Use the same number of trials for each experiment and vary the bin
+#width ∆x.# Sat, 30 Oct 2021 21:58:51
+#Use normal to generate an array X of M=106 Gaussian distributed random numbers.# Sat, 30 Oct 2021 21:59:25
+#Define a variable delta_x and call function number_hits_interval using -delta_x/2 and
+#delta_x/2 as the values for the parameters lower_bound and upper_bound.# Sat, 30 Oct 2021 22:02:28
+#Enter the corresponding absolute and relative frequencies and the resulting estimates for fX (0) i.e. the
+#value of the PDF fX (x) at x = 0 # Sat, 30 Oct 2021 22:02:31
+#fi/∆x (M→∞) −−−→ P(X ∈ Bi)/∆x--->∆x→0−−−→ fX (x)..............(4.18)# Sat, 30 Oct 2021 22:03:07
+M=1000000# Sat, 30 Oct 2021 22:03:37
+X=normal(0,1,M)# Sat, 30 Oct 2021 22:03:58
+delta_x=0.1# Sat, 30 Oct 2021 22:04:19
+delta_x=0.1# Sat, 30 Oct 2021 22:04:31
+number_hits_interval#[Out]# <function dsplab.lab1.number_hits_interval(X, lower_bound, upper_bound=None)>
+# Sat, 30 Oct 2021 22:04:41
+number_hits_interval?# Sat, 30 Oct 2021 22:05:47
+number_hits_interval(X,-delta_x/2,delta_x/2)#[Out]# 39764
+# Sat, 30 Oct 2021 22:06:40
+M=1000000
+X=normal(0,1,M)
+delta_x=0.01
+number_hits_interval(X,-delta_x/2,delta_x/2)#[Out]# 3905
+# Sat, 30 Oct 2021 22:07:30
+M=1000000
+X=normal(0,1,M)
+delta_x=0.001
+number_hits_interval(X,-delta_x/2,delta_x/2)#[Out]# 404
+# Sat, 30 Oct 2021 22:08:06
+M=1000000
+X=normal(0,1,M)
+delta_x=0.0001
+number_hits_interval(X,-delta_x/2,delta_x/2)#[Out]# 38
+# Sat, 30 Oct 2021 22:12:04
+M=1000000# Sat, 30 Oct 2021 22:12:09
+X=normal(0,1,M)# Sat, 30 Oct 2021 22:12:13
+delta_x=0.1# Sat, 30 Oct 2021 22:13:14
+number_hits_interval(X,-delta_x/2,delta_x/2)#[Out]# 40075
+# Sat, 30 Oct 2021 22:14:30
+rel_freq=abs_freq/M# Sat, 30 Oct 2021 22:15:09
+rel_freq=(abs_freq)/M# Sat, 30 Oct 2021 22:15:48
+rel_freq=40075/M# Sat, 30 Oct 2021 22:16:06
+rel_freq=40075/M
+rel_freq#[Out]# 0.040075
+# Sat, 30 Oct 2021 22:16:56
+#fx(0)
+fx0=rel_freq/delta_x
+fx0#[Out]# 0.40075
+# Sat, 30 Oct 2021 22:19:00
+M=1000000
+X=normal(0,1,M)
+delta_x=0.01# Sat, 30 Oct 2021 22:19:21
+#absolute frequency
+abs_freq=number_hits_interval(X,-delta_x/2,delta_x/2)# Sat, 30 Oct 2021 22:19:45
+abs_freq#[Out]# 4035
+# Sat, 30 Oct 2021 22:20:16
+#relative frequency
+rel_freq=4035/M
+rel_freq#[Out]# 0.004035
+# Sat, 30 Oct 2021 22:20:28
+#fx(0)
+fx0=rel_freq/delta_x# Sat, 30 Oct 2021 22:20:31
+fx0#[Out]# 0.4035
+# Sat, 30 Oct 2021 22:21:25
+M=1000000
+X=normal(0,1,M)
+delta_x=0.001# Sat, 30 Oct 2021 22:21:31
+#absolute frequency
+abs_freq=number_hits_interval(X,-delta_x/2,delta_x/2)# Sat, 30 Oct 2021 22:21:53
+abs_freq#[Out]# 387
+# Sat, 30 Oct 2021 22:22:09
+#relative frequency
+rel_freq=4035/M
+rel_freq#[Out]# 0.004035
+# Sat, 30 Oct 2021 22:22:20
+#fx(0)
+fx0=rel_freq/delta_x# Sat, 30 Oct 2021 22:22:27
+fx0#[Out]# 4.035
+# Sat, 30 Oct 2021 22:22:45
+M=1000000
+X=normal(0,1,M)
+delta_x=0.0001# Sat, 30 Oct 2021 22:22:58
+#absolute frequency
+abs_freq=number_hits_interval(X,-delta_x/2,delta_x/2)# Sat, 30 Oct 2021 22:23:21
+abs_freq#[Out]# 33
+# Sat, 30 Oct 2021 22:24:07
+M=1000000
+X=normal(0,1,M)
+delta_x=0.001# Sat, 30 Oct 2021 22:24:14
+#absolute frequency
+abs_freq=number_hits_interval(X,-delta_x/2,delta_x/2)# Sat, 30 Oct 2021 22:24:33
+abs_freq#[Out]# 392
+# Sat, 30 Oct 2021 22:24:45
+#relative frequency
+rel_freq=392/M
+rel_freq#[Out]# 0.000392
+# Sat, 30 Oct 2021 22:24:50
+#fx(0)
+fx0=rel_freq/delta_x# Sat, 30 Oct 2021 22:24:54
+fx0#[Out]# 0.39199999999999996
+# Sat, 30 Oct 2021 22:25:04
+M=1000000
+X=normal(0,1,M)
+delta_x=0.0001# Sat, 30 Oct 2021 22:25:09
+#absolute frequency
+abs_freq=number_hits_interval(X,-delta_x/2,delta_x/2)# Sat, 30 Oct 2021 22:25:30
+abs_freq#[Out]# 40
+# Sat, 30 Oct 2021 22:25:55
+#relative frequency
+rel_freq=40/M
+rel_freq#[Out]# 4e-05
+# Sat, 30 Oct 2021 22:26:07
+#fx(0)
+fx0=rel_freq/delta_x# Sat, 30 Oct 2021 22:26:17
+fx0#[Out]# 0.4
+# Sat, 30 Oct 2021 22:27:01
+#c) Estimate the probability density function of a uniform and a Gaussian random variable# Sat, 30 Oct 2021 22:28:45
+# Use uniform and normal respectively to generate a random array X of size M=100000
+#Use the function pdf to approximate the probability density function by a normalized histogram with N=100 bins# Sat, 30 Oct 2021 22:29:36
+M=1000000# Sat, 30 Oct 2021 22:30:58
+M=100000# Sat, 30 Oct 2021 22:31:12
+X=uniform(0,1,M)# Sat, 30 Oct 2021 22:31:25
+N=100# Sat, 30 Oct 2021 22:31:51
+pdf?# Sat, 30 Oct 2021 22:32:18
+#Signature: pdf(X, N=100)# Sat, 30 Oct 2021 22:34:52
+x,fx=pdf(X,N)# Sat, 30 Oct 2021 22:35:10
+plot_pdf(x,fx)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb2539490>)
+# Sat, 30 Oct 2021 22:35:47
+#for normal# Sat, 30 Oct 2021 22:36:12
+X=normal(0,1,M)# Sat, 30 Oct 2021 22:36:36
+x,fx=pdf(X,N)# Sat, 30 Oct 2021 22:36:49
+plot_pdf(x,fx)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb25ad850>)
+# Sat, 30 Oct 2021 22:37:59
+####################6.6 Experiment 5: Estimating the cumulative distribution function################### Sat, 30 Oct 2021 22:41:00
+#Use uniform and normal respectively to generate a random array X of size M=100000.
+#Use the function cdf to estimate the cumulative distribution function CDF# Sat, 30 Oct 2021 22:41:18
+M=100000# Sat, 30 Oct 2021 22:41:35
+X=uniform(0,1,M)# Sat, 30 Oct 2021 22:42:57
+N=100# Sat, 30 Oct 2021 23:06:10
+cdf?# Sat, 30 Oct 2021 23:06:40
+x,fx=cdf(X)# Sat, 30 Oct 2021 23:06:59
+plot_cdf(x,fx)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb265dd00>)
+# Sat, 30 Oct 2021 23:09:36
+M=100000# Sat, 30 Oct 2021 23:09:56
+X=normal(0,1,M)# Sat, 30 Oct 2021 23:10:13
+x,fx=cdf(X)# Sat, 30 Oct 2021 23:10:35
+plot_cdf(x,fx)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb261e4c0>)
+# Sat, 30 Oct 2021 23:11:18
+#################6.7 Experiment 6: Addition of a constant value#################### Sat, 30 Oct 2021 23:11:55
+#Consider a random variable Y that is created by adding a constant value b to a known random variable X:
+#Y = X +b. Use the uniform random variable generated by uniform as the known random variable X.
+#Use the gen_b function to generate your individual value for the additive constant b in this lab# Sat, 30 Oct 2021 23:23:45
+b=gen_b()# Sat, 30 Oct 2021 23:23:51
+b#[Out]# -0.5
+# Sat, 30 Oct 2021 23:24:40
+#a) First, investigate the effect of adding a constant on the corresponding PDF# Sat, 30 Oct 2021 23:25:00
+#Use uniform to generate a uniformly distributed random array X of size M=10^5# Sat, 30 Oct 2021 23:25:31
+#Create the random vector Y by adding the constant b to X: Y=X+b.# Sat, 30 Oct 2021 23:25:46
+#Use the function pdf to approximate the probability density function by a normalized histogram# Sat, 30 Oct 2021 23:26:10
+#Plot the resulting estimate of the PDF by using the plot_pdf command. Sketch the estimated PDF in the
+#corresponding diagram given below. Label the axes!# Sat, 30 Oct 2021 23:26:33
+M=100000# Sat, 30 Oct 2021 23:27:02
+X=uniform(0,1,M)# Sat, 30 Oct 2021 23:27:16
+Y=X+b# Sat, 30 Oct 2021 23:27:22
+Y#[Out]# array([ 0.22168147,  0.25492419, -0.49631973, ..., -0.11492367,
+#[Out]#         0.37920872, -0.15536192])
+# Sat, 30 Oct 2021 23:27:49
+x,fx=pdf(Y,100)# Sat, 30 Oct 2021 23:28:05
+plot_pdf(x,fx)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb202b3a0>)
+# Sat, 30 Oct 2021 23:29:56
+#What is the effect of adding a constant to a random variable on the corresponding PDF?# Sat, 30 Oct 2021 23:30:49
+plot_pdf(x,f)# Sat, 30 Oct 2021 23:30:56
+x,f=pdf(Y,100)# Sat, 30 Oct 2021 23:31:00
+plot_pdf(x,f)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb2481ac0>)
+# Sat, 30 Oct 2021 23:31:49
+x,fx=pdf(Y,100)# Sat, 30 Oct 2021 23:31:55
+plot_pdf(x,fx)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb2413a90>)
+# Sat, 30 Oct 2021 23:40:56
+M=100000# Sat, 30 Oct 2021 23:41:03
+X=uniform(0,1,M)# Sat, 30 Oct 2021 23:41:13
+Y=X+b# Sat, 30 Oct 2021 23:41:16
+Y#[Out]# array([-0.36134602, -0.26081133,  0.16272647, ...,  0.28774814,
+#[Out]#        -0.17053239,  0.07439187])
+# Sat, 30 Oct 2021 23:41:19
+y,fx=pdf(Y,100)# Sat, 30 Oct 2021 23:41:30
+plot_pdf(y,fx)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb202bfa0>)
+# Sat, 30 Oct 2021 23:42:13
+b=-0.5# Sat, 30 Oct 2021 23:42:17
+Y=X+b# Sat, 30 Oct 2021 23:42:21
+Y#[Out]# array([-0.36134602, -0.26081133,  0.16272647, ...,  0.28774814,
+#[Out]#        -0.17053239,  0.07439187])
+# Sat, 30 Oct 2021 23:42:29
+y,fy=pdf(Y,100)# Sat, 30 Oct 2021 23:42:35
+plot_pdf(y,fy)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb434bc70>)
+# Sat, 30 Oct 2021 23:44:13
+#What is the effect of adding a constant to a random variable on the corresponding PDF?
+#after adding a constant, the center point gets moved by that constant value b# Sat, 30 Oct 2021 23:45:00
+#b) Next, investigate the effect of the addition of a constant on the corresponding moments.
+#Use function expected_values to estimate the moments of the original random variable X and of the
+#modified random variable Y. You can use the vectors X and Y generated in part a) of this lab.# Sat, 30 Oct 2021 23:50:07
+expected_values(X)#[Out]# (0.5021220764075358, 0.33540631305465635, 0.0832805662445036)
+# Sat, 30 Oct 2021 23:50:23
+expected_values(Y)#[Out]# (0.002122076407535769, 0.08328423664712056, 0.0832805662445036)
+# Sat, 30 Oct 2021 23:51:05
+#What is the effect of adding a constant to a random variable on the corresponding mean and variance?# Sat, 30 Oct 2021 23:51:22
+#Lets take a random variable c# Sat, 30 Oct 2021 23:51:33
+c=gen_c()# Sat, 30 Oct 2021 23:52:00
+a=gen_a()# Sat, 30 Oct 2021 23:52:04
+a#[Out]# 3.0
+# Sat, 30 Oct 2021 23:52:35
+M=100000# Sat, 30 Oct 2021 23:53:38
+X=normal(0,1,M)# Sat, 30 Oct 2021 23:53:56
+Y=X*a# Sat, 30 Oct 2021 23:55:38
+expected_values(X+a)#[Out]# (3.0031902680062594, 10.02003547411878, 1.0008936972082438)
+# Sat, 30 Oct 2021 23:55:56
+expected_values(Y+a)#[Out]# (3.009570804018779, 18.065469618843686, 9.008043274874195)
+# Sat, 30 Oct 2021 23:56:30
+####################6.8 Experiment 7: Multiplication with a constant factor###################### Sat, 30 Oct 2021 23:57:53
+#Consider two random variables Y and Z which are generated by multiplying a known random variable with a
+#constant factor a and its inverse 1/a respectively: Y = a ·X, Z = 1/a ·X = X/a.
+#Use the gen_a function to generate your individual value for the additive constant a in this lab# Sun, 31 Oct 2021 00:01:37
+a=gen_a()# Sun, 31 Oct 2021 00:01:42
+a#[Out]# 3.0
+# Sun, 31 Oct 2021 00:01:56
+M=100000# Sun, 31 Oct 2021 00:02:15
+X=normal(0,1,M)# Sun, 31 Oct 2021 00:02:31
+Y=X*a# Sun, 31 Oct 2021 00:03:16
+Z=X/a# Sun, 31 Oct 2021 00:04:11
+#Plot the resulting estimates of all PDFs to one figure using the plot_pdf command# Sun, 31 Oct 2021 00:04:48
+x_X, f_X=pdf(X,100)# Sun, 31 Oct 2021 00:05:31
+x_Y, f_Y=pdf(Y,100)# Sun, 31 Oct 2021 00:05:55
+x_Z, f_Z=pdf(Z,100)# Sun, 31 Oct 2021 00:06:46
+fig,ax=plot_pdf(x_X, f_X)# Sun, 31 Oct 2021 00:07:21
+plot_pdf(x_Y, f_Y, figure=fig, axes=ax, color="r")#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb43adc70>)
+# Sun, 31 Oct 2021 00:08:35
+plot_pdf(x_Z, f_Z, figure=fig, axes=ax, color="g")#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <matplotlib.axes._subplots.AxesSubplot at 0x1ecb43adc70>)
+# Sun, 31 Oct 2021 00:08:49
+ax.axis('auto')#[Out]# (-13.833954268268396,
+#[Out]#  14.048244516822471,
+#[Out]#  -0.05970475509593387,
+#[Out]#  1.2537998570146112)
+# Sun, 31 Oct 2021 00:08:58
+fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 31 Oct 2021 00:10:13
+#What is the effect of multiplying a random variable with a constant factor on the corresponding PDF?# Sun, 31 Oct 2021 00:11:25
+#after multiplying with a constant value to pdf, the width of pdf starts varying according to a# Sun, 31 Oct 2021 00:12:00
+#b) Next, investigate the effect on the corresponding moments.
+#Now, the known random variable X is the uniform random variable generated by the uniform function# Sun, 31 Oct 2021 00:12:38
+#b) Next, investigate the effect on the corresponding moments.
+#Now, the known random variable X is the uniform random variable generated by the uniform function
+#Use uniform to generate a uniformly distributed random array X of size M=105
+#Create the vector Y by multiplying vector X with a.# Sun, 31 Oct 2021 00:12:59
+M=100000# Sun, 31 Oct 2021 00:13:23
+x=uniform(0,1,M)# Sun, 31 Oct 2021 00:13:46
+X=uniform(0,1,M)# Sun, 31 Oct 2021 00:13:55
+Y=X*a# Sun, 31 Oct 2021 00:14:16
+expected_values(X)#[Out]# (0.4977223114788648, 0.3308609041899591, 0.0831342361884568)
+# Sun, 31 Oct 2021 00:14:27
+expected_values(Y)#[Out]# (1.4931669344365945, 2.977748137709632, 0.7482081256961113)
+# Sun, 31 Oct 2021 00:29:51
+#by multiplying a random variable with a constant factor,the moments change and get multiplied/increased for a=3 value# Sun, 31 Oct 2021 00:29:56
+#What is the effect of multiplying a random variable with a constant factor on the corresponding moments?# Sun, 31 Oct 2021 00:29:59
+#by multiplying a random variable with a constant factor,the moments change and get multiplied/increased for a=3 value# Sun, 31 Oct 2021 00:32:21
+# finish homework
+dsp_lab1_finish()Finishing Lab 1: Probability and Random Variables for matriculation number 11146364
+Lab 1: Probability and Random Variables  finished at: 2021-10-31 00:33:02.149623
+Finished after: 4:25:19.607666
+Info:  4722224406

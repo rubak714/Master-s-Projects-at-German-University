@@ -1,0 +1,208 @@
+Generated notebook dsp_lab2_11146364.ipynb for matriculation number 11146364 on: 2022-01-09 19:23:22.137606
+# iPython magic command to load the matplotlib library and
+# select the notebook graphics frontend
+%matplotlib inline
+# import necessary functions from the thkdss library
+from thkdsp import *
+from dsplab import *
+# import audio related functions from the audio submodule
+from thkdsp.audio import play_signal, wav2dtsignal
+# import some definitions and functions from numpy, the python library for Matlab-like array processing
+from numpy import arange, shape, array, zeros, size, ones, isscalar
+# iPython magic command to load the matplotlib library and
+# select the notebook graphics frontend
+%matplotlib inline
+# import necessary functions from the thkdss library
+from thkdsp import *
+from dsplab import *
+# import audio related functions from the audio submodule
+#from thkdsp.audio import play_signal, wav2dtsignal
+# import some definitions and functions from numpy, the python library for Matlab-like array processing
+from numpy import arange, shape, array, zeros, size, ones, isscalar
+# set font for Matplotlib to 'Times New Roman' if that is available
+set_mpl_font()
+# set default font size for Matplotlib, change to different value if labels are too large or too small
+set_mpl_fontsize(16)
+Info: 4722224406
+Lab 2: Stochastic Processes for matriculation number 11146364 started at: 2022-01-09 19:28:07.188972
+# Sun, 09 Jan 2022 19:30:44
+#Importing the functions used in this lab
+from dsplab.lab2 import *# Sun, 09 Jan 2022 19:44:14
+#Generate a segment of duration T = 2s for each sample function and M = 10000 sample functions for each process# Sun, 09 Jan 2022 19:44:27
+T = 2# Sun, 09 Jan 2022 19:44:39
+M = 10000# Sun, 09 Jan 2022 19:46:25
+#Different processes can be selected by calling urp with different values for the parameter N, with N=1,2,3,4,5# Sun, 09 Jan 2022 19:47:13
+#N=1,2,3,4,5
+#The function urp can be used to generate sample functions of five unknown random processes# Sun, 09 Jan 2022 19:47:41
+t1, s1 = urp(M, T, 1)# Sun, 09 Jan 2022 19:47:56
+t2, s2 = urp(M, T, 2)# Sun, 09 Jan 2022 19:48:25
+t3, s3 = urp(M, T, 3)# Sun, 09 Jan 2022 19:49:23
+t4, s4 = urp(M, T, 4)# Sun, 09 Jan 2022 19:49:36
+t5, s5 = urp(M, T, 5)# Sun, 09 Jan 2022 19:49:59
+plot_ensemble?# Sun, 09 Jan 2022 19:50:36
+plot_ensemble(t1, s1)# Sun, 09 Jan 2022 19:51:59
+plot_ensemble(t2, s2)# Sun, 09 Jan 2022 19:55:42
+plot_ensemble(t3, s3)# Sun, 09 Jan 2022 19:56:07
+plot_ensemble(t4, s4)# Sun, 09 Jan 2022 19:57:05
+plot_ensemble(t5, s5)# Sun, 09 Jan 2022 20:00:42
+from numpy import mean# Sun, 09 Jan 2022 20:03:34
+fig, ax = plot_signal(t1, mean(s1, 0), plotaxes = False, label = "1")# Sun, 09 Jan 2022 20:05:05
+fig, ax = plot_signal(t2, mean(s2, 0), plotaxes = False, figure = fig, axes = ax, label = "2")# Sun, 09 Jan 2022 20:06:21
+fig, ax = plot_signal(t3, mean(s3, 0), plotaxes = False, figure = fig, axes = ax, label = "3")# Sun, 09 Jan 2022 20:06:54
+fig, ax = plot_signal(t4, mean(s4, 0), plotaxes = False, figure = fig, axes = ax, label = "4")# Sun, 09 Jan 2022 20:08:03
+fig, ax = plot_signal(t5, mean(s5, 0), figure = fig, axes = ax, label = "5")# Sun, 09 Jan 2022 20:10:11
+ax.axis("auto")#[Out]# (-0.09950000000000006, 2.0895, -4.4822003051943256, 4.461988819575081)
+# Sun, 09 Jan 2022 20:11:26
+ax.legend()#[Out]# <matplotlib.legend.Legend at 0x18d33465e20>
+# Sun, 09 Jan 2022 20:11:51
+fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 09 Jan 2022 20:15:11
+########################################################################################### Sun, 09 Jan 2022 20:16:05
+tau1, varphi1 = acf_ensemble(t1, s1)# Sun, 09 Jan 2022 20:18:15
+tau2, varphi2 = acf_ensemble(t2, s2)# Sun, 09 Jan 2022 20:19:01
+tau3, varphi3 = acf_ensemble(t3, s3)# Sun, 09 Jan 2022 20:21:17
+tau4, varphi4 = acf_ensemble(t4, s4)# Sun, 09 Jan 2022 20:24:39
+plot_acf?# Sun, 09 Jan 2022 20:25:01
+plot_acf(tau1, varphi1)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ \\tau \\rightarrow$', ylabel='$\\varphi_{ss}(\\tau) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:25:36
+plot_acf(tau2, varphi2)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ \\tau \\rightarrow$', ylabel='$\\varphi_{ss}(\\tau) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:26:38
+plot_acf(tau3, varphi3)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ \\tau \\rightarrow$', ylabel='$\\varphi_{ss}(\\tau) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:27:35
+plot_acf(tau4, varphi4)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ \\tau \\rightarrow$', ylabel='$\\varphi_{ss}(\\tau) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:28:36
+T = 10# Sun, 09 Jan 2022 20:28:50
+M = 1000# Sun, 09 Jan 2022 20:30:50
+t1, s1 = urp(M, T, 1)# Sun, 09 Jan 2022 20:32:22
+t2, s2 = urp(M, T, 2)# Sun, 09 Jan 2022 20:33:19
+t3, s3 = urp(M, T, 3)# Sun, 09 Jan 2022 20:34:10
+t4, s4 = urp(M, T, 4)# Sun, 09 Jan 2022 20:35:22
+plot_ensemble_tf(t1, s1)# Sun, 09 Jan 2022 20:36:10
+plot_ensemble_tf(t2, s2)# Sun, 09 Jan 2022 20:37:01
+plot_ensemble_tf(t3, s3)# Sun, 09 Jan 2022 20:39:39
+plot_ensemble_tf(t4, s4)# Sun, 09 Jan 2022 20:45:05
+f1, phi1 = pds_ensemble(t1, s1)# Sun, 09 Jan 2022 20:45:59
+f2, phi2 = pds_ensemble(t2, s2)# Sun, 09 Jan 2022 20:46:58
+f3, phi3 = pds_ensemble(t3, s3)# Sun, 09 Jan 2022 20:47:28
+f4, phi4 = pds_ensemble(t4, s4)# Sun, 09 Jan 2022 20:49:53
+plot_pds(f1, phi1)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ f \\rightarrow$', ylabel='$ \\Phi_{ss}(f) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:50:20
+plot_pds(f2, phi2)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ f \\rightarrow$', ylabel='$ \\Phi_{ss}(f) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:50:54
+plot_pds(f3, phi3)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ f \\rightarrow$', ylabel='$ \\Phi_{ss}(f) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:51:25
+plot_pds(f4, phi4)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ f \\rightarrow$', ylabel='$ \\Phi_{ss}(f) \\rightarrow$'>)
+# Sun, 09 Jan 2022 20:52:02
+T = 10# Sun, 09 Jan 2022 20:52:22
+r = 48000# Sun, 09 Jan 2022 20:53:22
+t_s, s = wgn(1/r, T, 1, r)# Sun, 09 Jan 2022 20:56:31
+signal_fig, signal_ax = plot_signal(t_s, s, xmin = 0, xmax = 0.05)# Sun, 09 Jan 2022 20:57:01
+tau_s, varphi_ss = acf_time(t_s, s, 0.05)# Sun, 09 Jan 2022 21:01:33
+acf_fig, acf_ax = plot_acf(tau_s, varphi_ss)# Sun, 09 Jan 2022 21:02:52
+f_s, PHI_ss = pds_time(t_s, s)# Sun, 09 Jan 2022 21:03:48
+pds_fig, pds_ax = plot_pds(f_s, PHI_ss)# Sun, 09 Jan 2022 21:04:07
+play_signal(t_s, s)# Sun, 09 Jan 2022 21:05:54
+from thkdsp.audio import play_signal, wav2dtsignal
+#play_signal(t_s, s)# Sun, 09 Jan 2022 21:06:25
+play_signal(t_s, s)# Sun, 09 Jan 2022 21:08:23
+from thkdsp import *
+from dsplab import *
+from thkdsp.audio import play_signal, wav2dtsignal# Sun, 09 Jan 2022 21:08:44
+from thkdsp.audio import play_signal, wav2dtsignal# Sun, 09 Jan 2022 21:08:52
+play_signal(t_s, s)# Sun, 09 Jan 2022 21:09:04
+#play_signal(t_s, s)# Sun, 09 Jan 2022 21:14:04
+T_d = 0.001# Sun, 09 Jan 2022 21:14:07
+r = 48000# Sun, 09 Jan 2022 21:19:45
+t_d, d = gen_dirac(T_d, r)# Sun, 09 Jan 2022 21:22:11
+T = 1/4800# Sun, 09 Jan 2022 21:22:36
+t_h, h = moving_average(t_d, d, T)# Sun, 09 Jan 2022 21:23:12
+plot_signal(t_h, h, ylabel = "h")#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ t \\rightarrow$', ylabel='$ h(t) \\rightarrow$'>)
+# Sun, 09 Jan 2022 21:24:10
+t_g, g = moving_average(t_s, s, T)# Sun, 09 Jan 2022 21:25:04
+signal_fig, signal_ax = plot_signal(t_s, s, xmin = 0, xmax = 0.05, plotaxes = False)# Sun, 09 Jan 2022 21:26:21
+plot_signal(t_g, g, xmax = 0.05, figure = signal_fig, axes = signal_ax, color = "r")#[Out]# (<Figure size 432x288 with 1 Axes>, <AxesSubplot:xlabel='$ t \\rightarrow$'>)
+# Sun, 09 Jan 2022 21:27:21
+leg = signal_ax.legend(('s(t)', 'g(t)'))# Sun, 09 Jan 2022 21:28:05
+signal_fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 09 Jan 2022 21:29:27
+signal_fig, signal_ax = plot_signal(t_s, s, xmin = 0.01, xmax = 0.015, plotaxes = False)# Sun, 09 Jan 2022 21:30:37
+plot_signal(t_g, g, xmin = 0.01, xmax = 0.015, figure = signal_fig, axes = signal_ax, color = "r")#[Out]# (<Figure size 432x288 with 1 Axes>, <AxesSubplot:xlabel='$ t \\rightarrow$'>)
+# Sun, 09 Jan 2022 21:31:35
+leg = signal_ax.legend(('s(t)', 'g(t)'))# Sun, 09 Jan 2022 21:33:18
+signal_fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 09 Jan 2022 21:34:12
+tau_g, varphi_gg = acf_time(t_g, g, 0.001)# Sun, 09 Jan 2022 21:35:06
+plot_acf(tau_g, varphi_gg, xmin = -0.001, xmax = 0.001)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ \\tau \\rightarrow$', ylabel='$\\varphi_{ss}(\\tau) \\rightarrow$'>)
+# Sun, 09 Jan 2022 21:35:57
+f_g, PHI_gg = pds_time(t_g, g)# Sun, 09 Jan 2022 21:41:51
+pds_fig, pds_ax = plot_pds(f_s, PHI_ss)# Sun, 09 Jan 2022 21:41:57
+plot_pds(f_g, PHI_gg, figure = pds_fig, axes = pds_ax, color = "r")#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ f \\rightarrow$', ylabel='$ \\Phi_{ss}(f) \\rightarrow$'>)
+# Sun, 09 Jan 2022 21:42:01
+pds_fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 09 Jan 2022 21:42:06
+play_signal(t_g, g)# Sun, 09 Jan 2022 21:47:32
+t_ma = t_g# Sun, 09 Jan 2022 21:47:58
+g_ma = g# Sun, 09 Jan 2022 21:48:55
+T_d = 0.01# Sun, 09 Jan 2022 21:49:52
+r = 48000# Sun, 09 Jan 2022 21:51:30
+t_ma = t_g# Sun, 09 Jan 2022 21:51:34
+g_ma = g# Sun, 09 Jan 2022 21:51:37
+T_d = 0.01# Sun, 09 Jan 2022 21:51:42
+r = 48000# Sun, 09 Jan 2022 21:51:46
+t_d, d = gen_dirac(T_d, r)# Sun, 09 Jan 2022 21:51:49
+f_c = 4800# Sun, 09 Jan 2022 21:53:42
+t_h, h = low_pass(t_d, d, f_c)# Sun, 09 Jan 2022 21:53:54
+plot_signal(t_h, h)#[Out]# (<Figure size 432x288 with 1 Axes>, <AxesSubplot:xlabel='$ t \\rightarrow$'>)
+# Sun, 09 Jan 2022 21:54:27
+t_g, g = low_pass(t_s, s, f_c)# Sun, 09 Jan 2022 21:55:46
+signal_fig, signal_ax = plot_signal(t_s, s, xmin = 0, xmax = 0.05, plotaxes = False)# Sun, 09 Jan 2022 21:55:56
+plot_signal(t_g, g, xmax = 0.05, figure = signal_fig, axes = signal_ax, color = "r")#[Out]# (<Figure size 432x288 with 1 Axes>, <AxesSubplot:xlabel='$ t \\rightarrow$'>)
+# Sun, 09 Jan 2022 21:56:01
+leg = signal_ax.legend(('s(t)', 'g(t)'))# Sun, 09 Jan 2022 21:56:06
+signal_fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 09 Jan 2022 21:56:33
+signal_fig, signal_ax = plot_signal(t_s, s, xmin = 0.01, xmax = 0.015, plotaxes = False)# Sun, 09 Jan 2022 21:59:16
+plot_signal(t_g, g, xmin = 0.01, xmax = 0.015, figure = signal_fig, axes = signal_ax, color = "r")#[Out]# (<Figure size 432x288 with 1 Axes>, <AxesSubplot:xlabel='$ t \\rightarrow$'>)
+# Sun, 09 Jan 2022 22:00:36
+signal_fig, signal_ax = plot_signal(t_s, s, xmin = 0.01, xmax = 0.015, plotaxes = False)# Sun, 09 Jan 2022 22:02:38
+plot_signal(t_g, g, xmin = 0.01, xmax = 0.015, figure = signal_fig, axes = signal_ax, color = "r")#[Out]# (<Figure size 432x288 with 1 Axes>, <AxesSubplot:xlabel='$ t \\rightarrow$'>)
+# Sun, 09 Jan 2022 22:04:02
+leg = signal_ax.legend(('s(t)', 'g(t)'))# Sun, 09 Jan 2022 22:05:03
+signal_fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 09 Jan 2022 22:08:07
+tau_g, varphi_gg = acf_time(t_g, g, 0.001)# Sun, 09 Jan 2022 22:11:08
+plot_acf(tau_g, varphi_gg, xmin = -0.001, xmax = 0.001)#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ \\tau \\rightarrow$', ylabel='$\\varphi_{ss}(\\tau) \\rightarrow$'>)
+# Sun, 09 Jan 2022 22:11:42
+f_g, PHI_gg = pds_time(t_g, g)# Sun, 09 Jan 2022 22:11:51
+pds_fig, pds_ax = plot_pds(f_s, PHI_ss)# Sun, 09 Jan 2022 22:11:58
+plot_pds(f_g, PHI_gg, figure = pds_fig, axes = pds_ax, color = "r")#[Out]# (<Figure size 432x288 with 1 Axes>,
+#[Out]#  <AxesSubplot:xlabel='$ f \\rightarrow$', ylabel='$ \\Phi_{ss}(f) \\rightarrow$'>)
+# Sun, 09 Jan 2022 22:12:02
+pds_fig#[Out]# <Figure size 432x288 with 1 Axes>
+# Sun, 09 Jan 2022 22:12:09
+play_signal(t_g, g)# Sun, 09 Jan 2022 22:12:14
+play_signal(t_s, s)# Sun, 09 Jan 2022 22:12:17
+play_signal(t_ma, g_ma)# Sun, 09 Jan 2022 22:12:21
+play_signal(t_g, g)# Sun, 09 Jan 2022 22:14:09
+#following lines could not be executed for failure in importing audio file from thkdsp# Sun, 09 Jan 2022 22:14:15
+#play_signal(t_g, g)# Sun, 09 Jan 2022 22:14:19
+#play_signal(t_s, s)# Sun, 09 Jan 2022 22:14:25
+#play_signal(t_ma, g_ma)# Sun, 09 Jan 2022 22:14:30
+#play_signal(t_g, g)# Sun, 09 Jan 2022 22:51:35
+# finish homework
+dsp_lab2_finish()Finishing Lab 2: Stochastic Processes for matriculation number 11146364
+Lab 2: Stochastic Processes  finished at: 2022-01-09 23:07:09.974003
+Finished after: 3:39:02.785031
+Info:  4722224406
